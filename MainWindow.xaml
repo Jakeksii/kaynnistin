@@ -7,6 +7,88 @@
         mc:Ignorable="d"
         Title="Käynnistin" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <!-- Header banner (row 0) -->
+        <Border Grid.Row="0" Background="LightGray" Height="50">
+            <Grid>
+                <Button Content="Add New Script" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center" 
+                        Margin="0,0,10,0"/>
+            </Grid>
+        </Border>
+
+        <!-- Script container (row 1) -->
+        <ScrollViewer Grid.Row="1">
+            <WrapPanel x:Name="ScriptContainer" Margin="10">
+
+                <!-- Example script card #1 -->
+                <Border BorderBrush="Black" 
+                        BorderThickness="1" 
+                        CornerRadius="5" 
+                        Background="White" 
+                        Padding="10" 
+                        Margin="5">
+                        <!-- MouseLeftButtonUp="ScriptCard_MouseLeftButtonUp"> -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Title" 
+                                   FontWeight="Bold" 
+                                   FontSize="14"/>
+
+                        <TextBlock Text="Description" 
+                                   Grid.Row="1" 
+                                   Margin="0,5,0,5"/>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    Grid.Row="2" 
+                                    HorizontalAlignment="Right">
+                            <Button Content="Edit" 
+                                    Margin="0,0,5,0"/>
+                            <Button Content="Delete"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Example script card #2 -->
+                <Border BorderBrush="Black" 
+                        BorderThickness="1" 
+                        CornerRadius="5" 
+                        Background="White" 
+                        Padding="10" 
+                        Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Another Script Title" 
+                                   FontWeight="Bold" 
+                                   FontSize="14"/>
+                        <TextBlock Text="Another description..." 
+                                   Grid.Row="1" 
+                                   Margin="0,5,0,5"/>
+                        <StackPanel Orientation="Horizontal" 
+                                    Grid.Row="2" 
+                                    HorizontalAlignment="Right">
+                            <Button Content="Edit" 
+                                    Margin="0,0,5,0"/>
+                            <Button Content="Delete"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </WrapPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
