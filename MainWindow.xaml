@@ -18,77 +18,63 @@
                 <Button Content="Add New Script" 
                         HorizontalAlignment="Right" 
                         VerticalAlignment="Center" 
-                        Margin="0,0,10,0"/>
+                        Margin="0,0,10,0"
+                        Click="AddButton_Click"/>
             </Grid>
         </Border>
 
         <!-- Script container (row 1) -->
         <ScrollViewer Grid.Row="1">
-            <WrapPanel x:Name="ScriptContainer" Margin="10">
+            <ItemsControl Name="ScriptContainer" ItemsSource="{Binding Scripts}">
+                <!-- Use a WrapPanel as the layout for items -->
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-                <!-- Example script card #1 -->
-                <Border BorderBrush="Black" 
-                        BorderThickness="1" 
-                        CornerRadius="5" 
-                        Background="White" 
-                        Padding="10" 
-                        Margin="5">
-                        <!-- MouseLeftButtonUp="ScriptCard_MouseLeftButtonUp"> -->
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                <!-- Define how each Script is displayed -->
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type local:Script}">
+                        <Border BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                Background="White"
+                                Padding="10"
+                                Margin="5"
+                                MouseLeftButtonUp="ScriptCard_MouseRightButtonUp"
+                                >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                        <TextBlock Text="Title" 
-                                   FontWeight="Bold" 
-                                   FontSize="14"/>
+                                <!-- Bind title -->
+                                <TextBlock Text="{Binding Title}"
+                                           FontWeight="Bold"
+                                           FontSize="14"/>
 
-                        <TextBlock Text="Description" 
-                                   Grid.Row="1" 
-                                   Margin="0,5,0,5"/>
+                                <!-- Bind description -->
+                                <TextBlock Text="{Binding Description}"
+                                           Grid.Row="1"
+                                           Margin="0,5,0,5"/>
 
-                        <StackPanel Orientation="Horizontal" 
-                                    Grid.Row="2" 
-                                    HorizontalAlignment="Right">
-                            <Button Content="Edit" 
-                                    Margin="0,0,5,0"/>
-                            <Button Content="Delete"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-
-                <!-- Example script card #2 -->
-                <Border BorderBrush="Black" 
-                        BorderThickness="1" 
-                        CornerRadius="5" 
-                        Background="White" 
-                        Padding="10" 
-                        Margin="5">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Text="Another Script Title" 
-                                   FontWeight="Bold" 
-                                   FontSize="14"/>
-                        <TextBlock Text="Another description..." 
-                                   Grid.Row="1" 
-                                   Margin="0,5,0,5"/>
-                        <StackPanel Orientation="Horizontal" 
-                                    Grid.Row="2" 
-                                    HorizontalAlignment="Right">
-                            <Button Content="Edit" 
-                                    Margin="0,0,5,0"/>
-                            <Button Content="Delete"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-            </WrapPanel>
+                                <!-- Edit/Delete buttons -->
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Row="2"
+                                            HorizontalAlignment="Right">
+                                    <Button Content="Edit"
+                                            Click="EditButton_Click"
+                                            Margin="0,0,5,0"/>
+                                    <Button Content="Delete" Click="DeleteButton_Click"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
 </Window>
