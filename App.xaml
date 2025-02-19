@@ -1,7 +1,7 @@
-﻿<Application x:Class="käynnistin.App"
+﻿<Application x:Class="conmod.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:käynnistin"
+             xmlns:local="clr-namespace:conmod"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

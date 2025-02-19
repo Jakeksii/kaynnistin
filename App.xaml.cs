@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace käynnistin
+namespace conmod
 {
     /// <summary>
     /// Interaction logic for App.xaml
