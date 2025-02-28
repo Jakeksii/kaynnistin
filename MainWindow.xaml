@@ -79,6 +79,7 @@
             </ScrollViewer>
         </Grid>
 
+        <local:AddEditScriptDialog x:Name="AddEditScriptDialogControl"/>
         <local:ConfirmationDialog x:Name="ConfirmationDialogControl"/>
     </Grid>
 </Window>
