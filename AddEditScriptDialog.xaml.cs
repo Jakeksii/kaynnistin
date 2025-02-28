@@ -24,12 +24,20 @@ namespace käynnistin
             { 
                 ViewModel.Title = "";
                 ViewModel.Description = "";
+                ViewModel.Arguments = "-ExecutionPolicy Bypass -NoExit -NoProfile";
+                ViewModel.RunAsAdmin = false;
+                ViewModel.WorkingDirectory = "";
+                ViewModel.ScriptPath = "";
                 ViewModel.Script = "";
                 ViewModel.Mode = "New";
             } else
             {
                 ViewModel.Title = script.Title;
                 ViewModel.Description = script.Description;
+                ViewModel.Arguments = script.Arguments;
+                ViewModel.RunAsAdmin = script.RunAsAdmin;
+                ViewModel.WorkingDirectory = script.WorkingDirectory;
+                ViewModel.ScriptPath = script.ScriptPath;
                 ViewModel.Script = script.Data;
                 ViewModel.Mode = "Edit";
             }
@@ -55,7 +63,7 @@ namespace käynnistin
             // Create or update a script based on mode
             if (ViewModel.Mode == "New")
             {
-                var newScript = new Script(ViewModel.Title, ViewModel.Description, ViewModel.Script);
+                var newScript = new Script(ViewModel.Title, ViewModel.Description, ViewModel.Arguments, ViewModel.RunAsAdmin, ViewModel.WorkingDirectory, ViewModel.ScriptPath, ViewModel.Script);
                 _scripts.Add(newScript);
             }
             else if (ViewModel.Mode == "Edit")
@@ -64,6 +72,10 @@ namespace käynnistin
                 {
                     Title = ViewModel.Title,
                     Description = ViewModel.Description,
+                    Arguments = ViewModel.Arguments,
+                    RunAsAdmin = ViewModel.RunAsAdmin,
+                    WorkingDirectory = ViewModel.WorkingDirectory,
+                    ScriptPath = ViewModel.ScriptPath,
                     Data = ViewModel.Script
                 });
             }
@@ -78,6 +90,10 @@ namespace käynnistin
     {
         private string _title = "";
         private string _description = "";
+        private string _arguments = "-ExecutionPolicy Bypass -NoExit -NoProfile";
+        private bool _runAsAdmin = false;
+        private string _scriptPath = "";
+        private string _workingDirectory = "";
         private string _script = "";
         private string _mode = "New";
 
@@ -99,6 +115,47 @@ namespace käynnistin
                 _description = value;
                 OnPropertyChanged(nameof(Description));
             }
+        }
+
+        public string Arguments
+        {
+            get => _arguments;
+            set
+            {
+                _arguments = value;
+                OnPropertyChanged(nameof(Arguments));
+            }
+        }
+
+        public bool RunAsAdmin
+        {
+            get => _runAsAdmin;
+            set
+            {
+                _runAsAdmin = value;
+                OnPropertyChanged(nameof(RunAsAdmin));
+            }
+        }
+
+        public string WorkingDirectory
+        {
+            get => _workingDirectory;
+            set
+            {
+                _workingDirectory = value;
+                OnPropertyChanged(nameof(WorkingDirectory));
+            }
+        }
+
+        public string ScriptPath
+        {
+            get => _scriptPath;
+            set
+            {
+                _scriptPath = value;
+                OnPropertyChanged(nameof(ScriptPath));
+            }
+
         }
 
         public string Script

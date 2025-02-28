@@ -42,13 +42,12 @@
 
                 <ScrollViewer Grid.Row="2">
                     <StackPanel>
-                        <!-- Title Input -->
+                        
                         <TextBlock Text="Title:" Margin="0,5" />
                         <TextBox x:Name="TitleTextBox" 
                                 Margin="0,0,0,10"
                                 Text="{Binding Title}"/>
 
-                        <!-- Description Input (Multiline) -->
                         <TextBlock Text="Description:" Margin="0,5" />
                         <TextBox x:Name="DescriptionTextBox" 
                             Margin="0,0,0,10" 
@@ -57,13 +56,32 @@
                             Height="50"
                             Text="{Binding Description}"/>
 
-                        <!-- Script Input -->
-                        <TextBlock Text="Script (.ps1):" Margin="0,5" />
+                        <TextBlock Text="Arguments (Powershell startup arguments):" Margin="0,5" />
+                        <TextBox x:Name="ArgumentsTextBox" 
+                            Margin="0,0,0,10"
+                            Text="{Binding Arguments}"/>
+
+                        <CheckBox x:Name="RunAsAdminCheckBlock"
+                                  Margin="0,0,0,10"
+                                  Content="Run as Administrator"
+                                  IsChecked="{Binding RunAsAdmin, Mode=TwoWay}"/>
+
+                        <TextBlock Text="Working directory (Dir where PS is launched. If not provided default dir is used):" Margin="0,5" />
+                        <TextBox x:Name="WorkingDirectoryTextBox" 
+                            Margin="0,0,0,10"
+                            Text="{Binding WorkingDirectory}"/>
+
+                        <TextBlock Text="Path (Full path to .ps1 file):" Margin="0,5" />
+                        <TextBox x:Name="ScriptPathTextBox" 
+                            Margin="0,0,0,10"
+                            Text="{Binding ScriptPath}"/>
+
+                        <TextBlock Text="Script (PowerShell language. Used only when Path is not provided):" Margin="0,5" />
                         <TextBox x:Name="ScriptTextBox" 
                                 Margin="0,0,0,10"
                                 AcceptsReturn="True"
                                 TextWrapping="Wrap"
-                                Height="500"
+                                Height="300"
                                 Text="{Binding Script}"/>
                     </StackPanel>
                 </ScrollViewer>
