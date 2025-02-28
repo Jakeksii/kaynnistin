@@ -5,7 +5,7 @@ namespace käynnistin
 {
     public partial class ConfirmationDialog : UserControl
     {
-        public Action? callback { get; set; }
+        private Action? _callback;
 
         // Constructor takes a callback function.
         public ConfirmationDialog()
@@ -16,7 +16,7 @@ namespace käynnistin
         // Invoked when Yes is clicked.
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            callback?.Invoke();
+            _callback?.Invoke();
             Hide();
         }
 
@@ -27,8 +27,9 @@ namespace käynnistin
         }
 
         // Show the overlay by setting its visibility.
-        public void Show()
+        public void Show(Action callback)
         {
+            _callback = callback;
             this.Visibility = Visibility.Visible;
         }
 

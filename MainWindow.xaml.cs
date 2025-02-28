@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace käynnistin
 {
@@ -14,22 +13,16 @@ namespace käynnistin
             InitializeComponent();
 
             // initialize collection
-            Script script1 = new("id", "title", "description", "data");
-            scripts.Add(script1);
-            // scripts = Storage.Load();
+            scripts = Storage.Load();
+
             // bind collection to ItemsControl
             ScriptContainer.ItemsSource = scripts;
         }
 
         private void AddButton_Click(Object sender, RoutedEventArgs e)
         {
-            if (sender is Button)
-            {
-                // REPLACE THIS WITH edit / new modal
-                Script script1 = new("id", "title", "description", "data");
-                scripts.Add(script1);
-                Storage.Save(scripts); // Save collection
-            }
+            // Open AddEditScriptDialog as New
+            AddEditScriptDialogControl.Show(null, scripts);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -42,7 +35,7 @@ namespace käynnistin
                     Storage.Save(scripts); // Save collection
                 }
 
-                ShowConfirmationDialog(callback);
+                ConfirmationDialogControl.Show(callback);
             }
         }
 
@@ -51,19 +44,8 @@ namespace käynnistin
             if (sender is Button btn && btn.DataContext is Script script)
             {
 
-                // OPEN EDIT / NEW MODAL AS EDIT
-
-                // REMOVE THESE TEST LINES
-                var updateInfo = new ScriptUpdateInfo
-                {
-                    Id = "newId",
-                    Title = "New Title",
-                    Description = "Updated description",
-                    Data = "New powershell command"
-                };
-                Console.WriteLine(updateInfo);
-
-                script.Update(updateInfo);
+                // Open AddEditScriptDialog as Edit
+                AddEditScriptDialogControl.Show(script, scripts);
             }
         }
 
@@ -74,11 +56,5 @@ namespace käynnistin
                 script.Launch();
             }
         }
-
-        private void ShowConfirmationDialog(Action callback)
-        {
-            ConfirmationDialogControl.callback = callback;
-            ConfirmationDialogControl.Show();
-        } 
     }
 }
