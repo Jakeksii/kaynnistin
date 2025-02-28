@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="käynnistin.ConfirmationDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root"
+             Visibility="Collapsed">
+    <!-- 
+      A full overlay grid that covers the entire client area of the parent window.
+      The semi-transparent background darkens what's behind it.
+    -->
+    <Grid Background="#80000000"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <!-- Centered confirmation panel -->
+        <Border Background="White"
+                CornerRadius="10"
+                Padding="20"
+                Width="300"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Are you sure?"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,15"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Yes" Width="75" Margin="5" Click="YesButton_Click"/>
+                    <Button Content="No" Width="75" Margin="5" Click="NoButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

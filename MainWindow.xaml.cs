@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace käynnistin
 {
@@ -31,12 +32,17 @@ namespace käynnistin
             }
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e) 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.DataContext is Script script)
             {
-                scripts.Remove(script); // Remove from collection
-                Storage.Save(scripts); // Save collection
+                void callback()
+                {
+                    scripts.Remove(script); // Remove from collection
+                    Storage.Save(scripts); // Save collection
+                }
+
+                ShowConfirmationDialog(callback);
             }
         }
 
@@ -68,5 +74,11 @@ namespace käynnistin
                 script.Launch();
             }
         }
+
+        private void ShowConfirmationDialog(Action callback)
+        {
+            ConfirmationDialogControl.callback = callback;
+            ConfirmationDialogControl.Show();
+        } 
     }
 }

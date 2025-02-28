@@ -7,36 +7,37 @@
         mc:Ignorable="d"
         Title="Käynnistin" Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!-- Header banner (row 0) -->
-        <Border Grid.Row="0" Background="LightGray" Height="50">
-            <Grid>
-                <Button Content="Add New Script" 
+            <!-- Header banner (row 0) -->
+            <Border Grid.Row="0" Background="LightGray" Height="50">
+                <Grid>
+                    <Button Content="Add New Script" 
                         HorizontalAlignment="Right" 
                         VerticalAlignment="Center" 
                         Margin="0,0,10,0"
                         Click="AddButton_Click"/>
-            </Grid>
-        </Border>
+                </Grid>
+            </Border>
 
-        <!-- Script container (row 1) -->
-        <ScrollViewer Grid.Row="1">
-            <ItemsControl Name="ScriptContainer" ItemsSource="{Binding Scripts}">
-                <!-- Use a WrapPanel as the layout for items -->
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
+            <!-- Script container (row 1) -->
+            <ScrollViewer Grid.Row="1">
+                <ItemsControl Name="ScriptContainer" ItemsSource="{Binding Scripts}">
+                    <!-- Use a WrapPanel as the layout for items -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                <!-- Define how each Script is displayed -->
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type local:Script}">
-                        <Border BorderBrush="Black"
+                    <!-- Define how each Script is displayed -->
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:Script}">
+                            <Border BorderBrush="Black"
                                 BorderThickness="1"
                                 CornerRadius="5"
                                 Background="White"
@@ -44,37 +45,40 @@
                                 Margin="5"
                                 MouseLeftButtonUp="ScriptCard_MouseRightButtonUp"
                                 >
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                <!-- Bind title -->
-                                <TextBlock Text="{Binding Title}"
+                                    <!-- Bind title -->
+                                    <TextBlock Text="{Binding Title}"
                                            FontWeight="Bold"
                                            FontSize="14"/>
 
-                                <!-- Bind description -->
-                                <TextBlock Text="{Binding Description}"
+                                    <!-- Bind description -->
+                                    <TextBlock Text="{Binding Description}"
                                            Grid.Row="1"
                                            Margin="0,5,0,5"/>
 
-                                <!-- Edit/Delete buttons -->
-                                <StackPanel Orientation="Horizontal"
+                                    <!-- Edit/Delete buttons -->
+                                    <StackPanel Orientation="Horizontal"
                                             Grid.Row="2"
                                             HorizontalAlignment="Right">
-                                    <Button Content="Edit"
+                                        <Button Content="Edit"
                                             Click="EditButton_Click"
                                             Margin="0,0,5,0"/>
-                                    <Button Content="Delete" Click="DeleteButton_Click"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+                                        <Button Content="Delete" Click="DeleteButton_Click"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+
+        <local:ConfirmationDialog x:Name="ConfirmationDialogControl"/>
     </Grid>
 </Window>
